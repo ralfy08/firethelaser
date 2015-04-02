@@ -1,0 +1,27 @@
+{
+  "name": "fireTheLaser",
+  "version": "0.0.0",
+  "description": "Final project for csc 397. Aims to emulate a laser pointer with smart phone and projector",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amaraxmonika/firethelaser.git"
+  },
+  "keywords": [
+    "android",
+    "nodejs"
+  ],
+  "author": "Chasen Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amaraxmonika/firethelaser/issues"
+  },
+  "homepage": "https://github.com/amaraxmonika/firethelaser",
+  "dependencies": {
+    "socket.io": "^1.3.5",
+    "express": "^4.12.3"
+  }
+}
