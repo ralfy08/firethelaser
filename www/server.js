@@ -27,6 +27,17 @@ io.on('connection', function (socket) {
     socket.on('data', function (data){
         console.dir("data: " + data.data);
     });
-    socket.on('moreData', function (data){
+
+    // Responds to cursor move event
+    // data.x = +/- x position
+    // data.y = +/- y position
+    socket.on('cursorMove', function (data){
+        console.log('cursorMove' + data);
+    });
+
+    // Responds to cursor scale event
+    // data.z = +/- z position
+    socket.on('scale', function (data){
+        console.log('cursorMove' + data);
     });
 });
