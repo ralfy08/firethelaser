@@ -33,7 +33,8 @@ io.on('connection', function (socket) {
     // data.y = +/- y position
     socket.on('cursorMove', function (data){
         //socket.emit('moveCursor', data);
-        socket.broadcast.emit('moveCursor', data);
+        //socket.broadcast.emit('moveCursor', data);
+        io.emit('moveCursor', data);
         console.log('moveCursor: %j', data);
     });
 
