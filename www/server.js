@@ -32,12 +32,14 @@ io.on('connection', function (socket) {
     // data.x = +/- x position
     // data.y = +/- y position
     socket.on('cursorMove', function (data){
-        console.log('cursorMove' + data);
+        //socket.emit('moveCursor', data);
+        socket.broadcast.emit('moveCursor', data);
+        console.log('moveCursor: %j', data);
     });
 
     // Responds to cursor scale event
     // data.z = +/- z position
     socket.on('scale', function (data){
-        console.log('cursorMove' + data);
+        console.log('cursorScale: %j', data);
     });
 });

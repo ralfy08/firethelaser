@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <script src="/socket.io/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 var socket = io('');
 socket.on('connect', function(){
@@ -10,6 +11,18 @@ socket.on('connect', function(){
 
     socket.on('readyForFile', function (data) {
         asyncFileSend(data);
+    });
+
+    // Responds to cursor move event
+    // data.x = +/- x position
+    // data.y = +/- y position
+    socket.on('moveCursor', function (data){
+        var current = $('#reticle').offset()
+        current.left += parseInt(data.x);
+        current.top += parseInt(data.y);
+        //$('#reticle').offset({top:data.x,left:data.y})
+        $('#reticle').offset({'top':current.top, 'left':current.left});
+        console.log('moving cursor %j', data);
     });
 });
 
@@ -78,5 +91,5 @@ function handleFileSelect(file, callback) {
 }
 </script>
 <body>
-<p> THis works</p>
+    <div id="reticle">p</div>
 </body>
