@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="/socket.io/socket.io.js"></script>
+<script>
+var socket = io('');
+socket.on('connect', function(){
+
+    console.log("this works");
+    socket.emit('data', { data : 'this is data' });
+
+    socket.on('readyForFile', function (data) {
+        asyncFileSend(data);
+    });
+});
+
+var isReading = false;
+var fileQueue = [];
+function addFileToQueue(file, successCallback){
+    fileQueue.push(file);
+    if (!isReading){
+        isReading = true;
+        asyncFileProcess(fileQueue, function(){
+            isReading = false;        
+            successCallback();
+        });
+    }
+}
+function asyncFileProcess(files, callback){
+
+    if (files.length == 0){
+        callback();
+        return;
+    }
+
+    handleFileSelect(files[0], function(){
+            files.shift();
+            asyncFileProcess(files, callback);
+    });
+}
+function handleFileSelect(file, callback) {
+
+    // Setting up file buffer for blob chunks
+    var buffer = new FileBuffer(file[0]);
+    buffer.setChunkSize(2000);
+
+    var socketFile = {
+        'name' : file[0].name,
+        'size' : file[0].size
+    };
+
+
+    asyncFileSend = function (data) {
+            console.log('ready for file here');
+            buffer.setReadCallback( function (blob) {
+                socket.emit('streamFile', { 'blob' : blob.target.result });  
+                buffer.incrementIndex(blob.target.result.length);
+                buffer.getNext();
+            });    
+
+            buffer.setEnd(function () {
+                socket.emit('endFileStream');
+                console.log('ending file stream');
+                delete buffer;
+                buffer.FILE.upload = {
+                  progress: 100,
+                  total: 100,
+                  bytesSent: 100
+                };
+                file[0].doneReading();
+                callback();
+            });
+
+            buffer.start();
+    };
+
+    // Sending new file info to server via socket
+    socket.emit('newFile', socketFile);
+}
+</script>
+<body>
+<p> THis works</p>
+</body>
