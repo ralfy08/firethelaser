@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <script src="/socket.io/socket.io.js"></script>
+
+<!--
+  Ralf added script tags
+-->
+  <link href="index.css" type="text/css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrap.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="index.js"></script>
+  <title>FireLaser!</title>
+<!-- End of added tags -->
 <script>
 var socket = io('');
 socket.on('connect', function(){
@@ -78,5 +91,93 @@ function handleFileSelect(file, callback) {
 }
 </script>
 <body>
-<p> THis works</p>
+  <nav class="navbar navbar-default navbar-fixed-top" role="banner">
+     <div class="container">
+       <div class="navbar-header">
+         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a href="/" class="navbar-brand">Fire The Laser</a>
+       </div>
+       <nav class="collapse navbar-collapse" role="navigation">
+         <ul class="nav navbar-nav">
+           <li>
+             <a href="#ProjectDescription">Project Description</a>
+           </li>
+           <li>
+             <a href="#Team">Team Members</a>
+           </li>
+         </ul>
+       </nav>
+     </div>
+   </nav>
+
+   <div id="masthead">  
+     <div class="container">
+       <div class="row">
+         <div class="col-md-7">
+           <h1>Fire The Laser
+             <p class="lead">Kickass 397C Project</p>
+           </h1>
+         </div> 
+       </div> 
+     </div><!--/container-->
+   </div><!--/masthead-->
+
+  <!--main-->
+  <div class="container">
+	  <div class="row">
+      <!--left-->
+      <div class="col-md-3">
+        <ul class="nav nav-stacked" id="sidebar">
+          <li><button href="#something" id="hashButton" type="button" onclick="hashFunction()" class="btn btn-danger">Generate Hash</button></li>
+          <li><textarea class="form-control" rows="1" id="hashCode" readonly></textarea></li>
+          <li class="active">Icon 1: <span class="glyphicon glyphicon-film"/></li>
+          <li>Icon 2: <span class="glyphicon glyphicon-asterisk"/></li>
+          <li>Icon 3: <span class="glyphicon glyphicon-music"/></li>
+          <li>Icon 4: <span class="glyphicon glyphicon-glass"/></li>
+        </ul>
+      </div><!--/left-->
+      
+      <!--right-->
+      <div style="border-left-style: solid; border-color: salmon" class="col-md-9">
+        <h2 id="sec0">Content</h2>
+        <p>Move your icon in the spaace provided below</p>     
+        <hr>
+        <p>
+          Rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae 
+          
+        <h2 id="sec1">Content</h2>
+        <p>
+          Rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae 
+          dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut.
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3>Hello.</h3></div>
+              <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
+                Aliquam in felis sit amet augue.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3>Hello.</h3></div>
+              <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
+                Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
+                in felis sit amet augue.
+              </div>
+            </div>
+          </div>  
+        </div>
+        <hr>
+        <hr> 
+        </div><!--/right-->
+  	</div><!--/row-->
+  </div><!--/container-->
+  
 </body>
